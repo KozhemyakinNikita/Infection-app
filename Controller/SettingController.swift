@@ -25,10 +25,8 @@ class SettingsController: UIViewController {
         // Установка свойств для stackView
         stackView.axis = .vertical
         stackView.alignment = .center
-        //            stackView.distribution = .equalSpacing
         stackView.spacing = 15
         stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.backgroundColor = .green
         
         // Добавление UI элементов в stackView
         stackView.addArrangedSubview(groupSize)
@@ -36,18 +34,11 @@ class SettingsController: UIViewController {
         stackView.addArrangedSubview(timer)
         stackView.addArrangedSubview(startModelButton)
         
-        // Установка свойств для textField1
-        setupGroupSize()
-        // Установка свойств для textField2
-        setupInfectionFactor()
         
-        // Установка свойств для textField3
+        setupGroupSize()
+        setupInfectionFactor()
         setupTimer()
         
-        // Установка свойств для кнопки
-        
-        
-        // Добавление stackView на основной view
         view.addSubview(stackView)
         
         
@@ -66,44 +57,23 @@ class SettingsController: UIViewController {
     }
     
     func setupGroupSize() {
-        //        groupSize.borderStyle = .roundedRect
         groupSize.borderStyle = .roundedRect
         groupSize.placeholder = "Group Size"
         groupSize.layer.cornerRadius = 10
         
-//        groupSize.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            groupSize.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 4),
-//            groupSize.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -4),
-//            groupSize.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 4),
-//            groupSize.bottomAnchor.constraint(equalTo: infectionFactor.topAnchor, constant: -4)
-//        ])
+
     }
     func setupInfectionFactor() {
-        //        groupSize.borderStyle = .roundedRect
         infectionFactor.borderStyle = .roundedRect
         infectionFactor.placeholder = "Infection Factor"
         infectionFactor.layer.cornerRadius = 10
         
-//        infectionFactor.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            infectionFactor.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 4),
-//            infectionFactor.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -4)
-//
-//        ])
     }
     func setupTimer() {
-        //        groupSize.borderStyle = .roundedRect
         timer.borderStyle = .roundedRect
         timer.placeholder = "Timer"
         timer.layer.cornerRadius = 10
         
-//        timer.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            timer.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 4),
-//            timer.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -4)
-//
-//        ])
     }
     
     func setupStartButton() {

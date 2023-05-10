@@ -9,7 +9,6 @@ import UIKit
 
 class SquareCollectionViewCell: UICollectionViewCell {
   static let reuseIdentifier = "SquareCollectionViewCell"
-//  var isTapped: Bool = false
  
   override init(frame: CGRect) {
     super.init(frame: frame)

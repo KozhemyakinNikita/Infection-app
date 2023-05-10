@@ -14,7 +14,6 @@ import UIKit
 
 class InfectionController: UIViewController {
     
-    //  var squares = [Bool](repeating: false, count: 400)
     var infectionFactor: Int = 5
     var squareSize: CGFloat = 1
     var n: Int = 2 // количество строк
@@ -23,7 +22,7 @@ class InfectionController: UIViewController {
     let screenWidth = Int(UIScreen.main.bounds.width)
     let screenHeight = Int(UIScreen.main.bounds.height)
     
-    var collectionView:fieldCollectionView!//fieldCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var collectionView:fieldCollectionView!
     let groupSize = UILabel()
     let infectionGroup = UILabel()
     
@@ -33,7 +32,6 @@ class InfectionController: UIViewController {
     var tick: Int = 0 {
         didSet {
             timerLabel.text = "Time: \(tick)"
-            //            timerLabel.text = "Tick: \(tick)"
         }
     }
     private var horizontalStack = UIStackView()
@@ -42,21 +40,13 @@ class InfectionController: UIViewController {
         super.viewDidLoad()
         tick = 0
         calculateGridSize(groupSize: N)
-//        collectionView = fieldCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView = fieldCollectionView(squareSize: squareSize, n: n, m: m, horizontalStack: horizontalStack)
         view.backgroundColor = UIColor.Colours.gameB
         
-        title = "Game" //NV
+        title = "Game"
         navigationController?.navigationBar.backgroundColor = UIColor.Colours.gameB
         
-        //настроить кнопку rightBarItem в NavigationController
-        let btn1 = UIButton(type: .custom)
-        btn1.setImage(UIImage(systemName: "Swift"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btn1.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btn1)
-        self.navigationItem.setRightBarButtonItems([item1], animated: true)
-        //
+       
         
         setupStackView()
         setupGroupSize()
@@ -64,7 +54,7 @@ class InfectionController: UIViewController {
         setupTimer()
         
         setupConstraints()
-        //        startTimer()
+        
         timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(collectionView.T), repeats: true) { timer in
             self.tick += 1
             self.collectionView.spreadInfection()
@@ -89,13 +79,7 @@ class InfectionController: UIViewController {
             horizontalStack.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: horizontalStack.bottomAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-//        ])
+        
     }
     
     
@@ -124,8 +108,7 @@ class InfectionController: UIViewController {
 //MARK: - Setup Collection View
     
     func updateCollectionView() {
-//                self.collectionView.spreadInfection()
-//        collectionView.performSelector(onMainThread: #selector(self.collectionView.spreadInfection), with: nil, waitUntilDone: true)
+
         collectionView.reloadData()
     }
     
@@ -165,36 +148,3 @@ class InfectionController: UIViewController {
 
 }
 
-
-
-
-//    @objc func updateTimer() {
-//        tick += 1
-//        if self.tick == Int(collectionView.T) {
-//            self.tick = 0
-//            self.collectionView.reloadData()
-//            self.updateCollectionView()
-//
-//        }
-//
-//    }
-
-//    func startTimer() {
-//
-//        //        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(collectionView.T), repeats: true) { [weak self] timer in
-//        //            guard let self = self else { return }
-//        //            self.tick += 1
-//        //            if self.tick == collectionView.T {
-//        //                self.tick = 0
-//        //                self.collectionView.reloadData()
-//        //            }
-//        timer = Timer.scheduledTimer(timeInterval: TimeInterval(collectionView.T), target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
-//
-//
-//        timer?.fire()
-//    }
-//
-//
-//    func stopTimer() {
-//        timer?.invalidate()
-//    }

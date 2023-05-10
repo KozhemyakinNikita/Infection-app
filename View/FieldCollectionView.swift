@@ -22,20 +22,8 @@ class fieldCollectionView: UICollectionView {
     var m: Int = 2 // количество столбцов
     var T: Double = 5// частота обновления экрана
     
-//    var timer: Timer?
     //MARK: - Init
-//    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-//        let layout = UICollectionViewFlowLayout()
-//        //        layout.minimumInteritemSpacing = 0
-//        //        layout.minimumLineSpacing = 0
-//        super.init(frame: frame, collectionViewLayout: layout)
-//        setupCollectionViewAppearance()
-//
-//
-//        self.squares = Array(repeating: false, count: N)
-//
-//
-//    }
+
     
     init(squareSize: CGFloat, n: Int, m: Int, horizontalStack: UIStackView) {
         super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -74,56 +62,6 @@ class fieldCollectionView: UICollectionView {
     }
   
    
-//    func getNeighboringIndices(for index: Int) -> [Int] {
-//        let row = index / m
-//        let col = index % m
-//        var neighbors: [Int] = []
-//        for i in (max(0, row-1))...(min(n-1, row+1)) {
-//            for j in (max(0, col-1))...(min(m-1, col+1)) {
-//                if i == row && j == col {
-//                    continue // Пропустить текущую клетку
-//                }
-//                let neighborIndex = i * m + j
-//                if !squares[neighborIndex] {
-//                    neighbors.append(neighborIndex)
-//                }
-//            }
-//        }
-//        return neighbors
-//    }
-//
-//    @objc func spreadInfection() {
-//        var newSquares = squares
-//        var infectedSquares = [Int]()
-//        for i in 0..<squares.count {
-//            if squares[i] {
-//                let uninfectedNeighbors = getNeighboringIndices(for: i)
-//                if !uninfectedNeighbors.isEmpty {
-//                    let infectionCount = min(infectionFactor, uninfectedNeighbors.count)
-//                    //добавить подсчет зараженных и здоровых
-//                    let infectedNeighbors = Array(uninfectedNeighbors.shuffled().prefix(infectionCount))
-//                    infectedNeighbors.forEach {
-//                        newSquares[$0] = true
-//                        infectedSquares.append($0)
-//                    }
-//                }
-//            }
-//        }
-//        // Check if any of the new infected squares are neighbors of each other
-//        var newlyInfectedSquares = [Int]()
-//        while !infectedSquares.isEmpty {
-//            let infectedIndex = infectedSquares.removeFirst()
-//            let newInfectedNeighbors = getNeighboringIndices(for: infectedIndex).filter { newSquares[$0] }
-//            let validNewlyInfectedNeighbors = newInfectedNeighbors.filter { !newlyInfectedSquares.contains($0) }
-//            newlyInfectedSquares.append(infectedIndex)
-//            newlyInfectedSquares.append(contentsOf: validNewlyInfectedNeighbors)
-//            infectedSquares.append(contentsOf: validNewlyInfectedNeighbors)
-//        }
-//        // Update the squares array with the newly infected squares
-//        newlyInfectedSquares.forEach { newSquares[$0] = true }
-//        squares = newSquares
-//        self.reloadSections(IndexSet(integer: 0))
-//    }
     func getNeighboringIndices(for index: Int) -> [Int] {
         let row = index / m
         let col = index % m
@@ -146,11 +84,6 @@ class fieldCollectionView: UICollectionView {
         
         return neighbors
     }
-
-
-
-
-
 
 
     @objc func spreadInfection() {
@@ -224,8 +157,6 @@ extension fieldCollectionView: UICollectionViewDelegate {
         squares[indexPath.row].toggle()
         print("indexPath: \(indexPath.section*m+indexPath.row)")
         
-        //    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SquareCollectionViewCell.reuseIdentifier, for: indexPath) as! SquareCollectionViewCell
-        //    cell.backgroundColor = .red
 
         let neighboringIndices = getNeighboringIndices(for: indexPath.section*m+indexPath.row)
         print("neighboringIndices: \(neighboringIndices)")
@@ -258,44 +189,3 @@ extension fieldCollectionView: UICollectionViewDelegateFlowLayout {
     
 }
 
-
-//        func getNeighboringIndices(for index: Int) -> [Int] {
-//            var neighboringIndices: [Int] = []
-//            let row = index / m
-//            let column = index % m
-//
-//            // проверка наличия соседей сверху, снизу, слева и справа
-//            if row > 0 {
-//                neighboringIndices.append((row - 1) * m + column)
-//            }
-//            if row < n - 1 {
-//                neighboringIndices.append((row + 1) * m + column)
-//            }
-//            if column > 0 {
-//                neighboringIndices.append(row * m + (column - 1))
-//            }
-//            if column < m - 1 {
-//                neighboringIndices.append(row * m + (column + 1))
-//            }
-//
-//            return neighboringIndices
-//        }
-//        func getNeighboringIndices(for index: Int) -> [Int] {
-//                let row = index / m
-//                let col = index % m
-//                var neighbors: [Int] = []
-//                for i in (max(0, row-1))...(min(n-1, row+1)) {
-//                    for j in (max(0, col-1))...(min(m-1, col+1)) {
-//                        if i == row && j == col {
-//                            continue // Пропустить текущую клетку
-//                        }
-//                        let neighborIndex = i * m + j
-//                        if !squares[neighborIndex] {
-//                            neighbors.append(neighborIndex)
-//                        }
-//                    }
-//                }
-//                return neighbors
-//            }
-    
-        
